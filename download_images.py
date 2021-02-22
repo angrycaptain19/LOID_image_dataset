@@ -51,6 +51,9 @@ def main():
         with open(country_dir+filename, 'r') as train_f:
             train_reader = csv.reader(train_f)
             header = train_reader.__next__()
+            nextline = train_reader.__next__()
+            print(nextline)
+            print(nextline[0])
             pool = multiprocessing.Pool(processes=2*multiprocessing.cpu_count())
             results = [pool.apply_async( download_and_resize, [ country, image_id, image_data[0] ] )
                                     for image_id, image_data in enumerate(train_reader)]
