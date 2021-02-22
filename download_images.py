@@ -31,7 +31,7 @@ def download_and_resize(country, im_id, im_url):
         else:
             print('Already saved: ' + save_path)
     except Exception as e:
-        print(e)
+        #print(e)
         with open("./log/bad.txt", "a") as bad:
             bad.write(save_path)
             bad.write("\n")
@@ -49,6 +49,7 @@ def main():
 
         with open(country_dir+filename, 'r') as train_f:
             train_reader = csv.reader(train_f)
+            header = train_reader.__next__()
             pool = multiprocessing.Pool(processes=2*multiprocessing.cpu_count())
             results = [pool.apply_async( download_and_resize, [ country, image_id, image_data[0] ] )
                                     for image_id, image_data in enumerate(train_reader)]
