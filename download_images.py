@@ -15,6 +15,7 @@ def url_to_image(url):
 
 
 def download_and_resize(country, im_id, im_url):
+    print(im_url)
     try:
         save_dir = os.path.join('./images/', country)
         if not os.path.exists(save_dir):
@@ -55,6 +56,8 @@ def main():
                                     for image_id, image_data in enumerate(train_reader)]
             pool.close()
             pool.join()
+        
+        break
 
 
 
